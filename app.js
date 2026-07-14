@@ -62,6 +62,23 @@ app.post("/api/add-volunteer", async (req, res) => {
     }
 });
 
+app.get("/api/view-volunteers", async (req, res) => {
+    try {
+
+        const volunteers = await Volunteer.find();
+
+        res.json(volunteers);
+
+    } catch (error) {
+
+        res.status(500).json({
+            status: "failed",
+            message: error.message
+        });
+
+    }
+});
+
 
 app.listen(3000, () => {
     console.log("Server Started");
